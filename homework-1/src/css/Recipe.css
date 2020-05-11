@@ -1,0 +1,19 @@
+.editButtons{
+    position: absolute;
+    bottom: 15%;
+    right: 1%;
+}
+
+.card-wrapper{
+    font-family: "Bernard MT Condensed";
+}
+
+.card .card-image img.recipe-front-image {
+    height: 900px;
+    width: 900px;
+}
+
+.name{
+    background-color: white;
+    opacity: 0.8;
+}
