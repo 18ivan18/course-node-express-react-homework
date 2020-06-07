@@ -4,7 +4,6 @@ import Login from './components/Login'
 import Footer from './components/Footer'
 import Register from './components/Register'
 import PrivateRouter from './components/LoginPrivateRoute'
-import AdminPrivateRoute from './components/AdminPrivateRoute'
 import Recepies from './components/Recepies'
 import Home from './components/Home'
 import ManageUsers from './components/ManageUsers'
@@ -37,13 +36,13 @@ const  App = () => {
             <Recepies />
           </PrivateRouter>
 
-          <AdminPrivateRoute path="/manageUsers">
+          <PrivateRouter path="/manageUsers">
             <ManageUsers />
-          </AdminPrivateRoute>
+          </PrivateRouter>
 
-          <AdminPrivateRoute path="/editUser/:userID">
+          <PrivateRouter path="/editUser/:_id">
             <EditUser />
-          </AdminPrivateRoute>
+          </PrivateRouter>
 
         </Switch>
       </main>

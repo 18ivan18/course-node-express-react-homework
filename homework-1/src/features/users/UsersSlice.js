@@ -1,35 +1,67 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+
+export const registerUser = createAsyncThunk(
+  "users/registerUser",
+  async (user) => {
+    const response = await fetch("http://localhost:8080/api/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(user),
+    });
+    return await response.json();
+  }
+);
 
 const UsersSlice = createSlice({
-    name: 'users',
-    initialState: [{
-        userID: 123,
-        name: "Adam",
-        email: "admin@admin.ad",
-        password: "admin",
-        gender: "M",
-        role: "admin",
-        profilePicture: "https://cdn0.iconfinder.com/data/icons/man-user-human-profile-avatar-person-business/100/10B-1User-512.png",
-        description: "I'm the admin",
-        accountValidity: "active",
-        registrationDate: Date.now(),
-        lastModificationDate: Date.now()
-    }],
-    reducers: {
-        addNewUser: (state, input) => {
-            state.push(input.payload)
-        },
-        removeUser: (state, userID) => {
-            return state.filter((user) => user.userID !== userID.payload);
-        },
-        editUser: (state, editedUser) => {
-            return state.map((user) => user.userID === editedUser.payload.userID ? editedUser.payload : user)
-        }
-    }
+  name: "users",
+  initialState: {
+    entities: [],
+    loading: "idle",
+    currentRequestId: undefined,
+    error: null,
+  },
+  reducers: {},
+  extraReducers: {
+    [registerUser.pending]: (state, action) => {
+      console.log("Pending...");
+      if (state.loading === "idle") {
+        state.loading = "pending";
+        state.currentRequestId = action.meta.requestId;
+      }
+    },
+    // you can mutate state directly, since it is using immer behind the scenes
+    [registerUser.fulfilled]: (state, action) => {
+      console.log("Fulfilled...");
+      const { requestId } = action.meta;
+      if (state.loading === "pending" && state.currentRequestId === requestId) {
+        state.loading = "idle";
+        state.entities.push(action.payload);
+        state.currentRequestId = undefined;
+      }
+    },
+    [registerUser.rejected]: (state, action) => {
+      console.log("Rejected...");
+      const { requestId } = action.meta;
+      if (state.loading === "pending" && state.currentRequestId === requestId) {
+        console.log(
+          "action error: ",
+          action.error,
+          "action payload:",
+          action.payload
+        );
+        state.loading = "idle";
+        state.error = action.error;
+        state.currentRequestId = undefined;
+      }
+    },
+  },
+});
+const { actions, reducer } = UsersSlice;
 
-})
-const { actions, reducer } = UsersSlice
+export const selectState = (state) => state.users;
+export const selectError = (state) => state.users.error;
 
-export const selectUsers = state => state.initialState
-export const { addNewUser, removeUser, editUser } = actions
-export default reducer
+export const { addNewUser, removeUser, editUser } = actions;
+export default reducer;

@@ -8,22 +8,14 @@ const AuthSlice = createSlice({
         adminMode: false
     },
     reducers: {
-        login: (state, input) => {
-            input.payload.users.map((user) => {
-                if(user.email === input.payload.email && user.password === input.payload.password) {
-                    state.loggedIn = true
-                    state.user = user
-                    input.payload.cb()
-                }
-            })
+        setAuth: (state, input) => {
+            state.loggedIn = input.payload.loggedIn;
+            state.user = input.payload.user
         },
         logout: (state) => {
             state.loggedIn = false
             state.user = null
             state.adminMode = false
-        },
-        adminMode: (state) => {
-            state.adminMode = !state.adminMode
         }
     }
 
@@ -31,5 +23,5 @@ const AuthSlice = createSlice({
 const { actions, reducer } = AuthSlice
 
 export const selectUsers = state => state.initialState
-export const { login, logout, adminMode } = actions
+export const { setAuth, logout } = actions
 export default reducer
