@@ -1,0 +1,32 @@
+{
+  "name": "homework-2",
+  "version": "1.0.0",
+  "description": "course-node-react-express-homework-2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/18ivan18/course-node-express-react-homework.git"
+  },
+  "keywords": [
+    "homework2"
+  ],
+  "author": "Ivan Arabadzhiyski",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/18ivan18/course-node-express-react-homework/issues"
+  },
+  "homepage": "https://github.com/18ivan18/course-node-express-react-homework#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "email-validator": "^2.0.4",
+    "express": "^4.17.1",
+    "indicative": "^7.4.4",
+    "mongoose": "^5.9.17",
+    "nodemon": "^2.0.4"
+  }
+}

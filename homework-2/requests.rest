@@ -1,0 +1,79 @@
+GET http://localhost:8080/api/users
+###
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+    "name": "Ivan Arabadzhiyski",
+    "email": "ajabaja15@gmail.com",
+    "password": "asdQWE123$",
+    "gender": "M",
+    "profilePicture": "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+    "shortDescription": "Alabala",
+    "validity": "active",
+    "role": "admin"
+}   
+###
+GET http://localhost:8080/api/users/5eda5e0817064c6e2845c861
+###
+DELETE http://localhost:8080/api/users/5eda5dc817064c6e2845c85e
+###
+POST http://localhost:8080/api/users/signin
+Content-Type: application/json
+
+{
+    "email": "ajabaja16@gmail.com",
+    "password": "asdQWE123$"
+}   
+###
+PUT http://localhost:8080/api/users/5eda5e0817064c6e2845c861
+Content-Type: application/json
+
+{
+    "name": "Ivan Zhivkov Arabadzhiyski",
+    "email": "ajabaja19@gmail.com",
+    "password": "asdQWE123$$",
+    "gender": "M",
+    "profilePicture": "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+    "shortDescription": "Alabala",
+    "validity": "active",
+    "role": "admin"
+}   
+
+###
+GET http://localhost:8080/api/users/5eda5e0817064c6e2845c861/recipes
+###
+POST http://localhost:8080/api/users/5eda5e0817064c6e2845c861/recipes
+Content-Type: application/json
+
+{
+    "name": "Musaka s kaima",
+    "time": 60,
+    "picture": "https://www.bonapeti.bg/uploads/recipes/rec16463/recipe_image0_540x405_147738720631.jpg",
+    "shortDescription": "S kaima yes",
+    "detailedDescription": "Na baba stanka",
+    "products": ["meso", "kaima"],
+    "tags": ["musaka", "baba stanka"]
+}
+
+###
+GET http://localhost:8080/api/users/5eda5e0817064c6e2845c861/recipes/5eda5e2217064c6e2845c863
+###
+DELETE http://localhost:8080/api/users/5eda5e0817064c6e2845c861/recipes/5eda5e2217064c6e2845c863
+###
+PUT http://localhost:8080/api/users/5eda5e0817064c6e2845c861/recipes/5eda5e2217064c6e2845c863
+Content-Type: application/json
+
+{
+    "name": "Musaka s kaima na baba stanka",
+    "time": 60,
+    "picture": "https://www.bonapeti.bg/uploads/recipes/rec16463/recipe_image0_540x405_147738720631.jpg",
+    "shortDescription": "S kaima yes",
+    "detailedDescription": "Na baba stanka",
+    "products": ["meso", "kaima"],
+    "tags": ["musaka", "baba stanka"]
+}
+
+###
+
+GET http://localhost:8080/api/recipes
